@@ -1,8 +1,8 @@
 import requests
 from auth import Auth
-from grade_scrape import Grade
-from absence_scrape import Absence
-from time_schedule_scrape import TimeSchedule
+from grade import Grade
+from absence import Absence
+from time_schedule import TimeSchedule
 from credit import Credit
 
 
