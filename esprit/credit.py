@@ -3,11 +3,38 @@ from bs4 import BeautifulSoup
 
 
 class Credit:
+    """
+    A class used to represent a Credit.
+
+    ...
+
+    Attributes
+    ----------
+    url : str
+        a formatted string that represents the URL of the credit page
+    session : requests.Session
+        a Session object from the requests library
+
+    Methods
+    -------
+    get_credits():
+        Returns a list of credits for the student.
+    """
+
     def __init__(self, session):
         self.url = "https://esprit-tn.com/ESPOnline/Etudiants/Historique_Cr%C3%A9dit.aspx"
         self.session = session
 
     def get_credits(self):
+        """
+        Returns a list of credits for the student.
+
+        Returns
+        -------
+        list
+            a list of credits, each represented as a list of strings. The first list is the headers.
+            Returns None if the page does not contain the expected text.
+        """
         response = self.session.get(self.url)
         soup = BeautifulSoup(response.text, 'html.parser')
 

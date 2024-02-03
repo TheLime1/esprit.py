@@ -3,11 +3,38 @@ from bs4 import BeautifulSoup
 
 
 class Grade:
+    """
+    A class used to represent a Grade.
+
+    ...
+
+    Attributes
+    ----------
+    url : str
+        a formatted string that represents the URL of the grade page
+    session : requests.Session
+        a Session object from the requests library
+
+    Methods
+    -------
+    get_grades():
+        Returns a list of grades for the student.
+    """
+
     def __init__(self, session):
         self.url = "https://esprit-tn.com/ESPOnline/Etudiants/Resultat2021.aspx"
         self.session = session
 
     def get_grades(self):
+        """
+        Returns a list of grades for the student.
+
+        Returns
+        -------
+        list
+            a list of grades, each represented as a list of strings. The first list is the headers.
+            Returns None if the page does not contain the expected text.
+        """
         response = self.session.get(self.url)
         soup = BeautifulSoup(response.text, 'html.parser')
 

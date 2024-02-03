@@ -2,11 +2,45 @@ import requests
 
 
 class Auth:
+    """
+    A class used to represent an Authentication.
+
+    ...
+
+    Attributes
+    ----------
+    login_url : str
+        a formatted string that represents the login URL
+    session : requests.Session
+        a Session object from the requests library
+
+    Methods
+    -------
+    login(id: str, password: str):
+        Logs in to the website using the provided id and password.
+    """
+
     def __init__(self, session=None):
         self.login_url = "https://esprit-tn.com/esponline/online/default.aspx"
         self.session = session if session else requests.session()
 
     def login(self, id, password):
+        """
+        Logs in to the website using the provided id and password.
+
+        Parameters
+        ----------
+            id : str
+                the id to use for login
+            password : str
+                the password to use for login
+
+        Returns
+        -------
+        requests.Session
+            the Session object used for the login. This can be used for subsequent requests.
+            Returns None if the login failed.
+        """
         id_payload = {
             '__EVENTTARGET': '',
             '__EVENTARGUMENT': '',

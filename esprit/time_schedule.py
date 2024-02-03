@@ -7,11 +7,44 @@ from PyPDF2 import PdfReader, PdfWriter
 
 
 class TimeSchedule:
+    """
+    A class used to represent a Time Schedule.
+
+    ...
+
+    Attributes
+    ----------
+    url : str
+        a formatted string that represents the URL of the time schedule page
+    session : requests.Session
+        a Session object from the requests library
+
+    Methods
+    -------
+    get_table_schedules():
+        Returns a list of time schedules for the student.
+    get_last_week_schedule():
+        Returns the most recent weekly schedule.
+    download_files(schedule: list):
+        Downloads the files associated with a given schedule.
+    get_class_week_schedule(file_path: str, class_name: str):
+        Extracts the weekly schedule for a specific class from a given file.
+    """
+
     def __init__(self, session):
         self.url = "https://esprit-tn.com/ESPOnline/Etudiants/Emplois.aspx"
         self.session = session
 
     def get_table_schedules(self):
+        """
+        Returns a list of time schedules for the student.
+
+        Returns
+        -------
+        list
+            a list of time schedules, each represented as a list of strings.
+            Returns None if the page does not contain the expected text.
+        """
         response = self.session.get(self.url)
         soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -36,6 +69,15 @@ class TimeSchedule:
         return time_schedules
 
     def get_last_week_schedule(self):
+        """
+        Returns the most recent weekly schedule.
+
+        Returns
+        -------
+        list
+            the most recent weekly schedule, represented as a list of strings.
+            Returns None if no schedules are found.
+        """
         time_schedules = self.get_table_schedules()
         if time_schedules is None:
             return None
@@ -59,6 +101,19 @@ class TimeSchedule:
         return dates_and_schedules[-1][1] if dates_and_schedules else None
 
     def download_files(self, schedule):
+        """
+        Downloads the files associated with a given schedule.
+
+        Parameters
+        ----------
+            schedule : list
+                the schedule to download files for, represented as a list of strings
+
+        Returns
+        -------
+        str
+            the path to the downloaded file
+        """
         response = self.session.get(self.url)
         soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -87,6 +142,21 @@ class TimeSchedule:
         return file_path
 
     def get_class_week_schedule(self, file_path, class_name):
+        """
+        Extracts the weekly schedule for a specific class from a given file.
+
+        Parameters
+        ----------
+            file_path : str
+                the path to the file to extract the schedule from
+            class_name : str
+                the name of the class to extract the schedule for
+
+        Returns
+        -------
+        str
+            the path to the extracted schedule, or None if the class is not found in the file
+        """
         # Open the existing PDF
         with open(file_path, "rb") as file:
             reader = PdfReader(file)
