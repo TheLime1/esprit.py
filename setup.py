@@ -8,7 +8,7 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
 # Read requirements.txt
-with open('requirements.txt') as f:
+with open(os.path.join(here, 'requirements.txt')) as f:
     requirements = f.read().splitlines()
 
 VERSION = '0.1.0'
@@ -25,7 +25,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
-    install_requires=["requests", "beautifulsoup4", "PyPDF2"],
+    install_requires=requirements,
     keywords=['python', 'api'],
     classifiers=[
         "Development Status :: 1 - Planning",
