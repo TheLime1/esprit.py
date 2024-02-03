@@ -5,12 +5,41 @@
 
 ## Features
 
-- Get your exact timetable pdf not 300 pages pdf
+- Get your exact timetable pdf *not 300 pages pdf*
 - Get your grades
 - Get your absences
 - Get your credits
 
-missing stuff:
-- [ ] download any time table from the esprit website , not only the last one
-- [ ] post stuff (reclamation,document stage,teacher evaluation) *dangereous area tbh*
+## Installation
 
+```bash
+pip install esprit-py
+```
+
+## Example
+
+```python
+from esprit import Esprit
+
+# Create an Esprit object
+esprit = Esprit()
+
+# Replace with your actual ID and password
+id = 'ID'
+password = 'PASSWORD'
+
+# Attempt to log in
+if esprit.login(id, password):
+    print("Login successful.")
+else:
+    print("Login failed.")
+
+# Get absences
+absences = esprit.get_absences()
+if absences is not None:
+    for absence in absences:
+        print(absence)
+else:
+    print("Failed to get absences.")
+```
+More examples can be found in the [examples folder](examples)
