@@ -1,9 +1,9 @@
 import requests
-from auth import Auth
-from grade import Grade
-from absence import Absence
-from time_schedule import TimeSchedule
-from credit import Credit
+from .auth import Auth
+from .grade import Grade
+from .absence import Absence
+from .time_schedule import TimeSchedule
+from .credit import Credit
 
 
 class Esprit:
