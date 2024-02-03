@@ -11,7 +11,7 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 with open(os.path.join(here, 'requirements.txt')) as f:
     requirements = f.read().splitlines()
 
-VERSION = '0.2.1'
+VERSION = '0.2.2'
 DESCRIPTION = ' A Python library for interacting with data from esprit-tn.com'
 LONG_DESCRIPTION = 'esprit-py, provides a set of tools for interacting with data from the Esprit website. It includes functionalities for scraping grades, absences, time schedules, and credits. It also provides the ability to download files and get class week schedules.'
 
