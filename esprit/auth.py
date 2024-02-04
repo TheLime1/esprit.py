@@ -1,4 +1,5 @@
 import requests
+from bs4 import BeautifulSoup
 
 
 class Auth:
@@ -41,12 +42,20 @@ class Auth:
             the Session object used for the login. This can be used for subsequent requests.
             Returns None if the login failed.
         """
+        response = self.session.get(self.login_url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        viewstate = soup.find('input', {'id': '__VIEWSTATE'})['value']
+        viewstategenerator = soup.find(
+            'input', {'id': '__VIEWSTATEGENERATOR'})['value']
+        eventvalidation = soup.find(
+            'input', {'id': '__EVENTVALIDATION'})['value']
+
         id_payload = {
             '__EVENTTARGET': '',
             '__EVENTARGUMENT': '',
-            '__VIEWSTATE': '/wEPDwUJNDE1NjEwODA3D2QWAmYPZBYCAgMPZBYCAgUPDxYCHgRUZXh0BQkyMDIzLzIwMjRkZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAQUSY3RsMDAkSW1hZ2VCdXR0b24x4A+yHAaVbbd+c/7zRnwYiufwfrp/gfS8JKpvS+xXvpE=',
-            '__VIEWSTATEGENERATOR': '717FCBFE',
-            '__EVENTVALIDATION': '/wEdAA3BKAYcHauA5ahZijRjSsR/D4zZrxX92uOlyIx1SyGTQokHj7KsGQZ9KI/q0cgR79eMO7fmjkJSfq6Zbgk2kTWn5BPdHG87XtyblNclsuAS8LvwPnslbtZbTzH+LM3KrmKoScikkrtCyMBYLZBZxv2YCNTGu6fpAlK5HiRhQ3QX7uQuDNsn18Vb/yPhT9ZPmVoNeSKFy2zxLVV4+zExdQxF5O2yeRHTM5Q6txDv+t953Rsahgpohlzzax1rmqU36I8bifdujSibODz2lHN+RHz6gNEqtVw0ulNZz52C7FdPSyEa0/J8qJqqEgP2sogExFA=',
+            '__VIEWSTATE': viewstate,
+            '__VIEWSTATEGENERATOR': viewstategenerator,
+            '__EVENTVALIDATION': eventvalidation,
             'ctl00$ContentPlaceHolder1$TextBox1': '',
             'ctl00$ContentPlaceHolder1$TextBox5': '',
             'ctl00$ContentPlaceHolder1$TextBox6': '',
@@ -58,12 +67,20 @@ class Auth:
 
         response_id = self.session.post(self.login_url, data=id_payload)
 
+        response = self.session.get(self.login_url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        viewstate = soup.find('input', {'id': '__VIEWSTATE'})['value']
+        viewstategenerator = soup.find(
+            'input', {'id': '__VIEWSTATEGENERATOR'})['value']
+        eventvalidation = soup.find(
+            'input', {'id': '__EVENTVALIDATION'})['value']
+
         password_payload = {
             '__EVENTTARGET': '',
             '__EVENTARGUMENT': '',
-            '__VIEWSTATE': '/wEPDwUJNDE1NjEwODA3D2QWAmYPZBYCAgMPZBYEAgUPDxYCHgRUZXh0BQkyMDIzLzIwMjRkZAIJD2QWAgIQD2QWEAIBDw8WAh4HVmlzaWJsZWhkZAIDDw8WBB8ABQoyMjFKTVQ1MzI2HwFoZGQCBw8PFgIfAWdkZAIJDw8WAh8BZ2RkAgsPDxYCHgdFbmFibGVkZ2RkAg0PDxYCHwFnZGQCDw8PFgIfAWdkZAIRDw8WAh8BaGRkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYBBRJjdGwwMCRJbWFnZUJ1dHRvbjF0JCLryb54s4inGLRx9VnEDk2ACOOB+Q8HNhb+Z6hPjQ==',
-            '__VIEWSTATEGENERATOR': '717FCBFE',
-            '__EVENTVALIDATION': '/wEdAA6E6Tm89lU7S/3iqJUOatsjD4zZrxX92uOlyIx1SyGTQokHj7KsGQZ9KI/q0cgR79eMO7fmjkJSfq6Zbgk2kTWn5BPdHG87XtyblNclsuAS8LvwPnslbtZbTzH+LM3KrmKoScikkrtCyMBYLZBZxv2Y4YHt2yH9TCYlNrTCCQccHuaXknurQIHyJEMAivskpdkfOLtcwEziInaQqEgDH0GiDXkihcts8S1VePsxMXUMReTtsnkR0zOUOrcQ7/rfed0bGoYKaIZc82sda5qlN+iPG4n3bo0omzg89pRzfkR8+mvbAUFWGOWJTqU2Q6L6lue8OojTbFO8vtwsRzaPKiZW',
+            '__VIEWSTATE': viewstate,
+            '__VIEWSTATEGENERATOR': viewstategenerator,
+            '__EVENTVALIDATION': eventvalidation,
             'ctl00$ContentPlaceHolder1$TextBox1': '',
             'ctl00$ContentPlaceHolder1$TextBox5': '',
             'ctl00$ContentPlaceHolder1$TextBox6': '',
