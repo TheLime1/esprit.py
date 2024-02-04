@@ -7,6 +7,8 @@ esprit = Esprit()
 id = 'ID'
 password = 'PASSWORD'
 
+download_path = "C:/Users/everp/Desktop/xxx"
+
 # Attempt to log in
 if esprit.login(id, password):
     print("Login successful.")
@@ -15,11 +17,12 @@ if esprit.login(id, password):
     schedule = esprit.get_last_week_schedule()
     if schedule is not None:
         # Download the last week's schedule
-        file_path = esprit.download_files(schedule)
+        file_path = esprit.download_files(schedule, download_path)
         print("Downloaded the last week's schedule.")
 
         # Get the schedule for class 2A23
-        class_schedule_path = esprit.get_class_week_schedule(file_path, '2A23')
+        class_schedule_path = esprit.get_class_week_schedule(
+            file_path, '2A23', download_path)
         if class_schedule_path is not None:
             print(
                 f"Downloaded the schedule for class 2A23 at {class_schedule_path}")

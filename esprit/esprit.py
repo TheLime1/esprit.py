@@ -31,11 +31,11 @@ class Esprit:
     def get_last_week_schedule(self):
         return self.time_schedule_scrape.get_last_week_schedule()
 
-    def download_files(self, schedule):
-        return self.time_schedule_scrape.download_files(schedule)
+    def download_files(self, schedule, download_path):
+        return self.time_schedule_scrape.download_files(schedule, download_path)
 
-    def get_class_week_schedule(self, file_path, class_name):
-        return self.time_schedule_scrape.get_class_week_schedule(file_path, class_name)
+    def get_class_week_schedule(self, file_path, class_name, result_path):
+        return self.time_schedule_scrape.get_class_week_schedule(file_path, class_name, result_path)
 
     def get_credits(self):
         return self.credit.get_credits()

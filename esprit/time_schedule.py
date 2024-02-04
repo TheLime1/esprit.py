@@ -100,7 +100,7 @@ class TimeSchedule:
         dates_and_schedules.sort(key=lambda x: x[0])
         return dates_and_schedules[-1][1] if dates_and_schedules else None
 
-    def download_files(self, schedule):
+    def download_files(self, schedule, download_path):
         """
         Downloads the files associated with a given schedule.
 
@@ -108,6 +108,8 @@ class TimeSchedule:
         ----------
             schedule : list
                 the schedule to download files for, represented as a list of strings
+            download_path : str
+                the path where the file should be downloaded
 
         Returns
         -------
@@ -135,13 +137,13 @@ class TimeSchedule:
         file_response = self.session.post(self.url, data=post_data)
 
         # Save the file
-        file_path = os.path.join(os.getcwd(), schedule[0])
+        file_path = os.path.join(download_path, schedule[0])
         with open(file_path, 'wb') as f:
             f.write(file_response.content)
 
         return file_path
 
-    def get_class_week_schedule(self, file_path, class_name):
+    def get_class_week_schedule(self, file_path, class_name, result_path):
         """
         Extracts the weekly schedule for a specific class from a given file.
 
@@ -151,6 +153,8 @@ class TimeSchedule:
                 the path to the file to extract the schedule from
             class_name : str
                 the name of the class to extract the schedule for
+            result_path : str
+                the path where the result PDF will be saved
 
         Returns
         -------
@@ -172,7 +176,8 @@ class TimeSchedule:
                     writer.add_page(page)
 
                     # Save the page as a new PDF
-                    new_file_path = f"{class_name}.pdf"
+                    new_file_path = os.path.join(
+                        result_path, f"{class_name}.pdf")
                     with open(new_file_path, "wb") as output_pdf:
                         writer.write(output_pdf)
 
