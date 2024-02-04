@@ -100,7 +100,7 @@ class TimeSchedule:
         dates_and_schedules.sort(key=lambda x: x[0])
         return dates_and_schedules[-1][1] if dates_and_schedules else None
 
-    def download_files(self, schedule):
+    def download_files(self, schedule, path):
         """
         Downloads the files associated with a given schedule.
 
@@ -108,6 +108,8 @@ class TimeSchedule:
         ----------
             schedule : list
                 the schedule to download files for, represented as a list of strings
+            path : str
+                the path where the downloaded file will be saved
 
         Returns
         -------
@@ -135,28 +137,33 @@ class TimeSchedule:
         file_response = self.session.post(self.url, data=post_data)
 
         # Save the file
-        file_path = os.path.join(os.getcwd(), schedule[0])
+        file_path = os.path.join(path, schedule[0])
         with open(file_path, 'wb') as f:
             f.write(file_response.content)
 
         return file_path
 
-    def get_class_week_schedule(self, file_path, class_name):
+    def get_class_week_schedule(self, schedule, class_name, download_path):
         """
         Extracts the weekly schedule for a specific class from a given file.
 
         Parameters
         ----------
-            file_path : str
-                the path to the file to extract the schedule from
+            schedule : list
+                the schedule to download files for, represented as a list of strings
             class_name : str
                 the name of the class to extract the schedule for
+            download_path : str
+                the path where the downloaded file will be saved
 
         Returns
         -------
         str
             the path to the extracted schedule, or None if the class is not found in the file
         """
+        # Download the file
+        file_path = self.download_files(schedule, download_path)
+
         # Open the existing PDF
         with open(file_path, "rb") as file:
             reader = PdfReader(file)

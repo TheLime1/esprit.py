@@ -7,6 +7,9 @@ esprit = Esprit()
 id = 'ID'
 password = 'PASSWORD'
 
+# Path where the downloaded file will be saved
+path = '/path/to/save/file'
+
 # Attempt to log in
 if esprit.login(id, password):
     print("Login successful.")
@@ -15,7 +18,7 @@ if esprit.login(id, password):
     schedule = esprit.get_last_week_schedule()
     if schedule is not None:
         # Download the last week's schedule
-        esprit.download_files(schedule)
+        esprit.download_files(schedule, path)
         print("Downloaded the last week's schedule.")
     else:
         print("Failed to get the last week's schedule.")
