@@ -36,6 +36,7 @@ setup(
         "Operating System :: Microsoft :: Windows",
     ],
     package_data={"": ["requirements.txt"]},
+    url="https://github.com/TheLime1/esprit.py"
 )
 
 '''
