@@ -56,7 +56,7 @@ class Auth:
                   Login successful!
                   -----------------
                   ''')
-            return self.driver
+            return self.driver.get_cookies()
         else:
             print('''
                   -------------

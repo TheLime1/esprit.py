@@ -9,7 +9,7 @@ from .credit import Credit
 class Esprit:
     def __init__(self):
         self.session = requests.Session()
-        self.auth = Auth(self.session)
+        self.auth = Auth()
         self.grade_scrape = Grade(self.session)
         self.grade_scrape = Grade(self.session)
         self.absence_scrape = Absence(self.session)
@@ -17,7 +17,8 @@ class Esprit:
         self.credit = Credit(self.session)
 
     def login(self, username, password):
-        return self.auth.login(username, password)
+        cookies = self.auth.login(username, password)
+        self.session.cookies.update(cookies)
 
     def get_grades(self):
         return self.grade_scrape.get_grades()
