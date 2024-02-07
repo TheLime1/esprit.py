@@ -1,7 +1,8 @@
 from esprit import Esprit
 
 # Create an Esprit object
-esprit = Esprit()
+esprit = Esprit(
+    driver_path="C:/custom/bins/chromedriver-win64/chromedriver.exe")
 
 # Replace with your actual ID and password
 id = 'ID'

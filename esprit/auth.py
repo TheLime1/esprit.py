@@ -6,7 +6,42 @@ from selenium.webdriver.chrome.options import Options
 
 
 class Auth:
+    """
+    A class used to represent an Authentication process
+
+    ...
+
+    Attributes
+    ----------
+    login_url : str
+        a string representing the login URL
+    debug : bool
+        a boolean indicating if debug mode is on
+    driver : WebDriver
+        a WebDriver object to interact with the browser
+
+    Methods
+    -------
+    login(id, password)
+        Logs in to the website using the provided id and password
+    """
+
     def __init__(self, driver_path=None, driver=None, debug=False, headless=True):
+        """
+        Constructs all the necessary attributes for the Auth object.
+
+        Parameters
+        ----------
+            driver_path : str, optional
+                Path to the WebDriver executable (default is None)
+            driver : WebDriver, optional
+                Existing WebDriver instance (default is None)
+            debug : bool, optional
+                Debug mode flag (default is False)
+            headless : bool, optional
+                Headless mode flag for the browser (default is True)
+        """
+
         self.login_url = "https://esprit-tn.com/esponline/online/default.aspx"
         self.debug = debug
 
@@ -19,6 +54,22 @@ class Auth:
             executable_path=driver_path, options=chrome_options)
 
     def login(self, id, password):
+        """
+        Logs in to the website using the provided id and password.
+
+        Parameters
+        ----------
+            id : str
+                User's id
+            password : str
+                User's password
+
+        Returns
+        -------
+        list
+            List of cookies if login is successful, None otherwise
+        """
+
         self.driver.get(self.login_url)
 
         # Fill in the ID
