@@ -7,6 +7,7 @@ esprit = Esprit(
 # Replace with your actual ID and password
 id = 'ID'
 password = 'PASSWORD'
+class_name = 'CLASS_NAME'
 
 download_path = "C:/path/to/download/folder/"
 
@@ -22,7 +23,7 @@ if schedule is not None:
 
     # Get the schedule for class 2A23
     class_schedule_path = esprit.get_class_week_schedule(
-        file_path, '2A23', download_path)
+        file_path, class_name, download_path)
     if class_schedule_path is not None:
         print(
             f"Downloaded the schedule for class 2A23 at {class_schedule_path}")
