@@ -16,13 +16,16 @@
 pip install esprit-py
 ```
 
+download `chromedriver` from [here](https://googlechromelabs.github.io/chrome-for-testing/#stable)
+
 ## Example
 
 ```python
 from esprit import Esprit
 
 # Create an Esprit object
-esprit = Esprit()
+esprit = Esprit(
+    driver_path="C:/path/to/chromedriver.exe",)
 
 # Replace with your actual ID and password
 id = 'ID'
@@ -41,5 +44,6 @@ if absences is not None:
         print(absence)
 else:
     print("Failed to get absences.")
+
 ```
 More examples can be found in the [examples folder](examples)

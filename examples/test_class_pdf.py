@@ -1,13 +1,14 @@
 from esprit import Esprit
 
 # Create an Esprit object
-esprit = Esprit()
+esprit = Esprit(
+    driver_path="C:/path/to/chromedriver.exe")
 
 # Replace with your actual ID and password
 id = 'ID'
 password = 'PASSWORD'
 
-download_path = "C:/Users/everp/Desktop/xxx"
+download_path = "C:/path/to/download/folder/"
 
 # Attempt to log in
 if esprit.login(id, password):
