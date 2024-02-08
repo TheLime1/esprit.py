@@ -46,4 +46,5 @@ else:
     print("Failed to get absences.")
 
 ```
+
 More examples can be found in the [examples folder](examples)

@@ -9,16 +9,13 @@ id = 'ID'
 password = 'PASSWORD'
 
 # Attempt to log in
-if esprit.login(id, password):
-    print("Login successful.")
+esprit.login(id, password)
 
-    # Get the last week's schedule
-    schedule = esprit.get_last_week_schedule()
-    if schedule is not None:
-        # Download the last week's schedule
-        esprit.download_files(schedule)
-        print("Downloaded the last week's schedule.")
-    else:
-        print("Failed to get the last week's schedule.")
+# Get the last week's schedule
+schedule = esprit.get_last_week_schedule()
+if schedule is not None:
+    # Download the last week's schedule
+    esprit.download_files(schedule)
+    print("Downloaded the last week's schedule.")
 else:
-    print("Login failed.")
+    print("Failed to get the last week's schedule.")

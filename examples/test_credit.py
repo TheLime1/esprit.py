@@ -9,10 +9,7 @@ id = 'ID'
 password = 'PASSWORD'
 
 # Attempt to log in
-if esprit.login(id, password):
-    print("Login successful.")
-else:
-    print("Login failed.")
+esprit.login(id, password)
 
 # Get credits
 credits = esprit.get_credits()
