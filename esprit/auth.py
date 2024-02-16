@@ -114,6 +114,7 @@ class Auth:
                   Login failed!
                   -------------
                   ''')
+            return None
 
 
 # Code for debugging login
