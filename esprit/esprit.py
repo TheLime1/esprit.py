@@ -11,7 +11,6 @@ class Esprit:
         self.session = requests.Session()
         self.auth = Auth(driver_path, driver, debug, headless)
         self.grade_scrape = Grade(self.session)
-        self.grade_scrape = Grade(self.session)
         self.absence_scrape = Absence(self.session)
         self.time_schedule_scrape = TimeSchedule(self.session)
         self.credit = Credit(self.session)
@@ -23,6 +22,9 @@ class Esprit:
 
     def get_grades(self):
         return self.grade_scrape.get_grades()
+
+    def calculate_average(self, grades):
+        return self.grade_scrape.calculate_average(grades)
 
     def get_absences(self):
         return self.absence_scrape.get_absences()

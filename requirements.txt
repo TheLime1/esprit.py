@@ -2,3 +2,5 @@ requests
 beautifulsoup4
 PyPDF2
 selenium
+numpy
+pandas
