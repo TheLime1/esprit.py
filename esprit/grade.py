@@ -21,6 +21,8 @@ class Grade:
     -------
     get_grades():
         Returns a list of grades for the student.
+    calculate_average(grades):
+        Calculate the average grade based on the given grades.
     """
 
     def __init__(self, session):
@@ -54,6 +56,17 @@ class Grade:
         return grades
 
     def calculate_average(self, grades):
+        """
+        Calculate the average grade based on the given grades.
+
+        Parameters
+        ----------
+        grades (list): A list of lists representing the grades. The first list should contain the column names.
+
+        Returns
+        -------
+        float: The calculated average grade.
+        """
         # Convert the list of lists to a DataFrame
         df = pd.DataFrame(grades[1:], columns=grades[0])
 
