@@ -9,6 +9,7 @@
 - Get your grades
 - Get your absences
 - Get your credits
+- Calculate your average
 
 ## Installation
 
@@ -18,7 +19,46 @@ pip install esprit-py
 
 download `chromedriver` from [here](https://googlechromelabs.github.io/chrome-for-testing/#stable)
 
-## Example
+## Examples
+
+get your total avreage:
+
+```python
+from esprit import Esprit
+
+# Replace with your actual ID and password
+id = 'ID'
+password = 'PASSWORD'
+
+grades = None
+
+# Keep trying to get grades until it is successful cuz esprit use garabage servers
+while grades is None:
+    try:
+        # Create an Esprit object
+        esprit = Esprit(
+            driver_path="C:/path/to/chromedriver.exe")
+
+        # Attempt to log in
+        esprit.login(id, password)
+
+        # Get grades
+        grades = esprit.get_grades()
+
+    except Exception as e:
+        print(f"An error occurred: {e}. Retrying...")
+
+if grades is not None:
+    for grade in grades:
+        print(grade)
+else:
+    print("Failed to get grades.")
+
+esprit.calculate_average(grades)
+
+```
+
+get a list of all your absences;
 
 ```python
 from esprit import Esprit
