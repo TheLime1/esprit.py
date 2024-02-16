@@ -4,6 +4,8 @@ from .grade import Grade
 from .absence import Absence
 from .time_schedule import TimeSchedule
 from .credit import Credit
+from .utils import Utils
+# from .exceptions import EspritException #TODO
 
 
 class Esprit:
@@ -14,6 +16,7 @@ class Esprit:
         self.absence_scrape = Absence(self.session)
         self.time_schedule_scrape = TimeSchedule(self.session)
         self.credit = Credit(self.session)
+        self.utils = Utils(self.session)
 
     def login(self, username, password):
         cookies = self.auth.login(username, password)
@@ -43,3 +46,9 @@ class Esprit:
 
     def get_credits(self):
         return self.credit.get_credits()
+
+    def get_student_name(self):
+        return self.utils.get_student_name()
+
+    def get_student_class(self):
+        return self.utils.get_student_class()
