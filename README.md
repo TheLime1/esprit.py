@@ -14,7 +14,7 @@
 ## Installation
 
 ```bash
-pip install esprit-py
+pip install esprit-py==0.3.5
 ```
 
 download `chromedriver` from [here](https://googlechromelabs.github.io/chrome-for-testing/#stable)
