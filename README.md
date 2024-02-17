@@ -9,7 +9,7 @@
 - Get your grades
 - Get your absences
 - Get your credits
-- Calculate your average
+- Calculate your total semester average
 
 ## Installation
 

@@ -1,6 +1,6 @@
 requests
 beautifulsoup4
 PyPDF2
-selenium
+selenium==4.9.0
 numpy
 pandas
