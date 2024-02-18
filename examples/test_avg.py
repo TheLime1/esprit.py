@@ -10,8 +10,7 @@ grades = None
 while grades is None:
     try:
         # Create an Esprit object
-        esprit = Esprit(
-            driver_path="C:/path/to/chromedriver.exe")
+        esprit = Esprit()
 
         # Attempt to log in
         esprit.login(id, password)
