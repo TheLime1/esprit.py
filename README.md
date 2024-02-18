@@ -1,5 +1,7 @@
 # <img src="https://esprit.tn/favicon.ico" width="28px" /> esprit-py
 
+[![PyPI version](https://badge.fury.io/py/esprit-py.svg)](https://pypi.org/project/esprit-py/)
+
 > [!NOTE]
 > Please note that this library is not an official API provided by Esprit and is intended for educational and personal use only.
 
@@ -14,10 +16,8 @@
 ## Installation
 
 ```bash
-pip install esprit-py==0.3.5
+pip install --upgrade esprit-py
 ```
-
-download `chromedriver` from [here](https://googlechromelabs.github.io/chrome-for-testing/#stable)
 
 ## Examples
 
@@ -36,8 +36,7 @@ grades = None
 while grades is None:
     try:
         # Create an Esprit object
-        esprit = Esprit(
-            driver_path="C:/path/to/chromedriver.exe")
+        esprit = Esprit()
 
         # Attempt to log in
         esprit.login(id, password)
@@ -64,8 +63,7 @@ get a list of all your absences;
 from esprit import Esprit
 
 # Create an Esprit object
-esprit = Esprit(
-    driver_path="C:/path/to/chromedriver.exe",)
+esprit = Esprit()
 
 # Replace with your actual ID and password
 id = 'ID'
