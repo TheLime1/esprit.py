@@ -1,6 +1,7 @@
 requests
 beautifulsoup4
 PyPDF2
-selenium==4.9.0
+selenium==4.17.0
 numpy
 pandas
+webdriver_manager

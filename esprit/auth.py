@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
 
@@ -50,8 +51,11 @@ class Auth:
         if headless:
             chrome_options.add_argument("--headless")
 
+        # Set up Chrome service
+        service = Service(executable_path=driver_path) if driver_path else None
+
         self.driver = driver if driver else webdriver.Chrome(
-            executable_path=driver_path, options=chrome_options)
+            service=service, options=chrome_options)
 
     def login(self, id, password):
         """
@@ -119,8 +123,7 @@ class Auth:
 
 # Code for debugging login
 if __name__ == "__main__":
-    auth = Auth(
-        driver_path="C:/custom/bins/chromedriver-win64/chromedriver.exe", debug=True)
+    auth = Auth(debug=True)
     id = "your_id"
     password = "your_password"
     session = auth.login(id, password)
