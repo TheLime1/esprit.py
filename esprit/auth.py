@@ -217,6 +217,20 @@ class Auth:
             print('Failed to submit ID')
             return None
         
+        # Check for incorrect ID error
+        soup_after_id = BeautifulSoup(response.text, 'html.parser')
+        
+        # Check if we're still on the initial page (not moved to password page)
+        # If ID field (TextBox3) is still present but password field (TextBox7) is not, ID is wrong
+        password_field_check = soup_after_id.find('input', {'id': lambda x: x and 'textbox7' in x.lower()})
+        id_field_still_present = soup_after_id.find('input', {'id': lambda x: x and 'textbox3' in x.lower()})
+        
+        # If we're still on ID page (TextBox3 present, TextBox7 absent), ID is incorrect
+        if id_field_still_present and not password_field_check:
+            # We're still on the ID page, not moved to password page
+            print('Identifiant incorrect !')
+            return None
+        
         if self.debug:
             print('After submitting ID with checkbox checked, now on password page...')
         
@@ -315,6 +329,16 @@ class Auth:
                 print('Response contains error/erreur')
             if 'invalid' in response.text.lower() or 'invalide' in response.text.lower():
                 print('Response contains invalid/invalide')
+        
+        # Check for incorrect password (still on password page after submission)
+        soup_after_password = BeautifulSoup(response.text, 'html.parser')
+        password_field_still_present = soup_after_password.find('input', {'id': lambda x: x and 'textbox7' in x.lower()})
+        is_still_on_login_page = 'default.aspx' in response.url.lower()
+        
+        # If we're still on default.aspx (login page) with password field present, password was incorrect
+        if is_still_on_login_page and password_field_still_present:
+            print('Mot de passe incorrect ! Redirection vers la page de connexion...')
+            return None
         
         # Check if login was successful
         # After successful login, we should be redirected to Accueil.aspx (home page)
