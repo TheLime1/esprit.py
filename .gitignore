@@ -1,6 +1,7 @@
 #custom
 tests/
 *.log
+upload_to_pypi.bat
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

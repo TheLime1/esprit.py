@@ -10,8 +10,9 @@ from .utils import Utils
 
 class Esprit:
     def __init__(self, driver_path=None, driver=None, debug=False, headless=True):
-        self.session = requests.Session()
         self.auth = Auth(driver_path, driver, debug, headless)
+        # Use the same session from Auth to maintain cookies
+        self.session = self.auth.session
         self.grade_scrape = Grade(self.session)
         self.absence_scrape = Absence(self.session)
         self.time_schedule_scrape = TimeSchedule(self.session)
@@ -20,8 +21,19 @@ class Esprit:
 
     def login(self, username, password):
         cookies = self.auth.login(username, password)
-        cookies_dict = {cookie['name']: cookie['value'] for cookie in cookies}
-        self.session.cookies.update(cookies_dict)
+        # Session is already updated in Auth, so we just need to check if login was successful
+        if cookies is None:
+            return False
+        return True
+    
+    def logout(self):
+        """
+        Logout from the ESPRIT website.
+        
+        Returns:
+            bool: True if logout was successful, False otherwise.
+        """
+        return self.auth.logout()
 
     def get_grades(self):
         return self.grade_scrape.get_grades()

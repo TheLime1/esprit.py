@@ -11,13 +11,13 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 with open(os.path.join(here, 'requirements.txt')) as f:
     requirements = f.read().splitlines()
 
-VERSION = '0.4.1'
-DESCRIPTION = ' A Python library for interacting with data from esprit-tn.com'
-LONG_DESCRIPTION = 'esprit-py, provides a set of tools for interacting with data from the Esprit website. It includes functionalities for scraping grades, absences, time schedules, and credits. It also provides the ability to download files and get class week schedules.'
+VERSION = '0.5.0'
+DESCRIPTION = 'A fast, lightweight Python library for interacting with data from esprit-tn.com'
+LONG_DESCRIPTION = 'esprit-py provides a set of tools for interacting with data from the Esprit website. It includes functionalities for scraping grades, absences, time schedules, and credits. Version 0.5.0 introduces a complete rewrite using requests for 5-10x faster performance, no browser requirements, and adds logout functionality.'
 
 # Setting up
 setup(
-    name="esprit-py",
+    name="esprit_py",
     version=VERSION,
     author="Lime1 (Aymen Hmani)",
     description=DESCRIPTION,
@@ -27,12 +27,13 @@ setup(
     install_requires=requirements,
     keywords=['python', 'api'],
     classifiers=[
-        "Development Status :: 1 - Planning",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
+        "License :: OSI Approved :: MIT License",
     ],
     package_data={"": ["requirements.txt"]},
     url="https://github.com/TheLime1/esprit.py"

@@ -34,19 +34,58 @@ class Credit:
             a list of credits, each represented as a list of strings. The first list is the headers.
             Returns None if the page does not contain the expected text.
         """
-        response = self.session.get(self.url)
+        response = self.session.get(self.url, allow_redirects=False)
+        if response.status_code == 302 or response.status_code == 301:
+            # Follow redirect
+            response = self.session.get(self.url, allow_redirects=True)
+        
+        if response.status_code != 200:
+            print("Failed to load credits page.")
+            return None
+        
+        # Check if we were redirected to login page
+        if 'default.aspx' in response.url or 'login' in response.url.lower():
+            print("Session expired or invalid - redirected to login page.")
+            return None
+        
         soup = BeautifulSoup(response.text, 'html.parser')
 
-        # Check if the <span> tag with the class "style5" and the text "Historique des Crédits" exists
-        span_tag = soup.find(
-            'span', {'class': 'style5'}, text='   Historique des Crédits  ')
-        if span_tag is None:
-            print("The page does not contain the expected text.")
-            return None
-
+        # Find the table with id='ContentPlaceHolder1_GridView1'
         table = soup.find('table', {'id': 'ContentPlaceHolder1_GridView1'})
+        if table is None:
+            # Try to find table by structure (has headers like "Année universitaire")
+            all_tables = soup.find_all('table')
+            for tbl in all_tables:
+                rows = tbl.find_all('tr')
+                if len(rows) > 0:
+                    first_row = rows[0]
+                    ths = first_row.find_all('th')
+                    if len(ths) > 0:
+                        headers = [th.text.strip() for th in ths]
+                        if 'Année universitaire' in headers or 'Unité d\'enseignement' in headers:
+                            table = tbl
+                            break
+            
+            if table is None:
+                print("Credits table not found on page.")
+                return None
+
         rows = table.find_all('tr')
+        if len(rows) == 0:
+            print("No rows found in credits table.")
+            return None
+        
+        # Extract headers from first row
         headers = [cell.text.strip() for cell in rows[0].find_all('th')]
-        grades = [headers] + [[cell.text.strip() for cell in row.find_all('td')]
-                              for row in rows[1:]]  # Skip header row
-        return grades
+        if len(headers) == 0:
+            print("No headers found in credits table.")
+            return None
+        
+        # Extract data rows
+        credits = [headers]
+        for row in rows[1:]:  # Skip header row
+            cells = [cell.text.strip() for cell in row.find_all('td')]
+            if len(cells) > 0:
+                credits.append(cells)
+        
+        return credits

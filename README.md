@@ -7,11 +7,13 @@
 
 ## Features
 
+- **Fast & Lightweight**: 5-10x faster than previous versions (no Selenium/browser required)
 - Get your exact timetable pdf *not 300 pages pdf*
 - Get your grades
 - Get your absences
 - Get your credits
 - Calculate your total semester average
+- **New**: Logout functionality for proper session management
 
 ## Installation
 
@@ -55,6 +57,9 @@ else:
 
 esprit.calculate_average(grades)
 
+# Logout when done
+esprit.logout()
+
 ```
 
 get a list of all your absences;
@@ -82,6 +87,9 @@ if absences is not None:
         print(absence)
 else:
     print("Failed to get absences.")
+
+# Logout when done
+esprit.logout()
 
 ```
 
