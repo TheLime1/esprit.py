@@ -1,6 +1,7 @@
-# <img src="https://esprit.tn/favicon.ico" width="28px" /> esprit-py
+# esprit-py
 
 [![PyPI version](https://badge.fury.io/py/esprit-py.svg)](https://pypi.org/project/esprit-py/)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/esprit-py?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/esprit-py)
 
 > [!NOTE]
 > Please note that this library is not an official API provided by Esprit and is intended for educational and personal use only.
