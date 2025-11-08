@@ -1,6 +1,6 @@
 # esprit-py
 
-[![PyPI version](https://badge.fury.io/py/esprit-py.svg)](https://pypi.org/project/esprit-py/)
+![PyPI - Version](https://img.shields.io/pypi/v/esprit-py)
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/esprit-py?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/esprit-py)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/esprit-py)
 
