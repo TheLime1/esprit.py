@@ -2,8 +2,7 @@
 
 ![PyPI - Version](https://img.shields.io/pypi/v/esprit-py)
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/esprit-py?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/esprit-py)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/esprit-py)
-
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/esprit-py?period=monthly&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads+monthly)](https://pepy.tech/projects/esprit-py)
 > [!NOTE]
 > Please note that this library is not an official API provided by Esprit and is intended for educational and personal use only.
 
